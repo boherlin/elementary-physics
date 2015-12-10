@@ -1,7 +1,7 @@
 \documentclass[]{../common/elementary-physics}
 
 \title{5. Increasing Electromagnet Force}
-\date{2015-11-19 v0.9}
+\date{2015-11-19 v0.9.1}
 
 \begin{document}
 
@@ -212,9 +212,12 @@ L i' + R i = V
 
 The solution to this equation is:
 
-\begin{equation}
-i(t) = \frac{V}{R} (1 - e^{- \frac{R t}{L}})
-\end{equation}
+\begin{subequations}
+\begin{align}
+i(t) &= \frac{V}{R} (1 - e^{- \frac{R t}{L}}) \\
+&= \frac{V}{R} (1 - e^{- \frac{t}{\tau}}) \\
+\end{align}
+\end{subequations}
 
 \begin{sagesilent}
 (L, R, V, t, x) = var('L, R, V, t, x')
@@ -248,20 +251,15 @@ and so the force to power ratio is proportional to $i(t)$:
 
 \begin{subequations}
 \begin{align}
-\frac{F(t)}{P(t)} &= \frac{A_F \, N^2 \, i^2(t)}{V \, i(t)} \\
-&= \frac{A_F N^2}{V} \, i(t)
+F2P(t) &= \frac{F(t)}{P(t)} \\
+&= \frac{A_F \, N^2 \, i^2(t)}{V \, i(t)} \\
+&= \frac{A_F N^2}{V} \, i(t) \\
+&= \frac{A_F N^2}{V} \, \frac{V}{R} (1 - e^{- \frac{t}{\tau}}) \\
+&= \frac{A_F}{A_R} (1 - e^{- \frac{t}{\tau}})
 \end{align}
 \end{subequations}
 
-and maximum force to power ratio is at $t = 5 \tau$, after that $i(t) = V/R$:
-
-\begin{subequations}
-\begin{align}
-\frac{F(t)}{P(t)} &= \frac{A_F N^2 V}{V R} \\
-&= \frac{A_F N^2}{R} \\
-&= \frac{A_F}{A_R}
-\end{align}
-\end{subequations}
+and maximum force to power ratio is at $t = 5 \tau$.
 
 We have assumed that $g$ is constant and not a function of time.
 If the force from the electromagnet is to be of any use it has to accelerate some mass.
@@ -269,6 +267,51 @@ In that case $g$ change and the force to power ratio no longer follows $i(t)$.
 If the mass to be accelerated is big enough the acceleration will be small enough to be discarded.
 But if the coil is part of a motor the mass is moving all the time so $g$ is constantly changing.
 One solution might be to put the rotor magnet inside the motor coil, preferably inside a motor coil that is huge as a barrel\cite{jonew}: \url{https://youtu.be/XryGfWn3ALk?t=25m10s}
+
+\section{Force to Power Ratio over $A_R$}
+
+We will now compare force to power ratio between two coils with the same $A_L$ at a fixed time in seconds as a function of $A_R$. Let the force to power ratio now be the function:
+
+\begin{equation}
+F2P(A_R,t) = \frac{A_F}{A_R} (1 - e^{- \frac{A_R t}{A_L}})
+\end{equation}
+
+Our reference coil will have $A_R = 1$ and we set $t = 5 A_L/A_R$ so our comparison function is:
+
+\begin{subequations}
+\begin{align}
+F2P_{cmp}(x) &= \frac{F2P(x,5 A_L/1)}{F2P(1,5 A_L/1)} \\
+&= \frac{e^5-e^{5(1-x)}}{(e^5-1)x}
+\end{align}
+\end{subequations}
+
+Let us plot $F2P_{cmp}(A_R)$:
+
+\begin{sagesilent}
+f2pc = (exp(5)-exp(5*(1-x)))/((exp(5)-1)*x)
+f2pc_plot = plot(f2pc, x, 0, 10)
+f2pc_plot.axes_labels(['AR', 'F2Pcmp(AR)'])
+\end{sagesilent}
+
+\sageplot[width=.75\textwidth]{f2pc_plot}
+
+It turns out that the maximum increase in force is:
+
+\begin{equation}
+\lim_{x \to +0} F2P_{cmp}(x) = \frac{5 e^5}{e^5-1} \approx 5.03
+\end{equation}
+
+Let us plot $F2P_{cmp}(1/A_R)$ to reflect the increase in copper instead of increase in resistance-factor:
+
+\begin{sagesilent}
+f2pci = (exp(5)-exp(5*(1-(1/x))))/((exp(5)-1)*(1/x))
+f2pci_plot = plot(f2pci, x, 0, 40)
+f2pci_plot.axes_labels(['1/AR', 'F2Pcmp(1/AR)'])
+\end{sagesilent}
+
+\sageplot[width=.75\textwidth]{f2pci_plot}
+
+At $1/A_R = 24$ the force is about $4.5$ times greater and circa $90 \percent$ of the maximum, and at $1/A_R = 11$ the force is about $4$ times greater and circa $80 \percent$ of the maximum.
 
 \section{Impulse and Energy}
 
@@ -447,4 +490,3 @@ where $r$, $l$, $d$ are in $m$ and $A_L$ is in $H$,
 \printbibliography
 
 \end{document}
-
