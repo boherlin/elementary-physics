@@ -1,7 +1,7 @@
 \documentclass[]{../common/elementary-physics}
 
 \title{5. Increasing Electromagnet Force}
-\date{2015-11-19 v0.9.1}
+\date{2015-11-19 v0.9.2}
 
 \begin{document}
 
@@ -219,6 +219,8 @@ i(t) &= \frac{V}{R} (1 - e^{- \frac{R t}{L}}) \\
 \end{align}
 \end{subequations}
 
+We set $L = R = V = 1$ and plot $i(t)$:
+
 \begin{sagesilent}
 (L, R, V, t, x) = var('L, R, V, t, x')
 assume(L>0)
@@ -233,8 +235,6 @@ istd_plot = plot(istd(t), t, 0, 6)
 istd_plot.axes_labels(['t', 'i(t)'])
 \end{sagesilent}
 
-We set $L = R = V = 1$ and plot $i(t)$:
-
 \sageplot[width=.75\textwidth]{istd_plot}
 
 As $t$ approach $5\tau$, in this case $\tau = L/R = 1$, $i(t)$ approaches $V$, in this case $V=1$.
@@ -247,7 +247,7 @@ P(t) &= V \, i(t)
 \end{align}
 \end{subequations}
 
-and so the force to power ratio is proportional to $i(t)$:
+and so the force to power ratio is proportional to $i(t)$, or rather to $1-e^{-x}$:
 
 \begin{subequations}
 \begin{align}
@@ -276,7 +276,7 @@ We will now compare force to power ratio between two coils with the same $A_L$ a
 F2P(A_R,t) = \frac{A_F}{A_R} (1 - e^{- \frac{A_R t}{A_L}})
 \end{equation}
 
-Our reference coil will have $A_R = 1$ and we set $t = 5 A_L/A_R$ so our comparison function is:
+Our reference coil will have $A_R = 1$ and we set $t = 5 \tau = 5 A_L/A_R$ for this coil so our comparison function is:
 
 \begin{subequations}
 \begin{align}
@@ -311,9 +311,9 @@ f2pci_plot.axes_labels(['1/AR', 'F2Pcmp(1/AR)'])
 
 \sageplot[width=.75\textwidth]{f2pci_plot}
 
-For $1/A_R = 24$ the force is about $4.5$ times greater and circa $90 \percent$ of the maximum, and for $1/A_R = 11$ the force is about $4$ times greater and circa $80 \percent$ of the maximum.
+For $1/A_R = 24$ the force is about $4.5$ times greater and circa $90 \percent$ of the maximum, and for $1/A_R = 11$ the force is about $4$ times greater and circa $80 \percent$ of the maximum. The time the coils are charged with respect to its own time-constant are $5/24 \tau$ and $5/11 \tau$ respectively.
 
-\section{Impulse and Energy}
+\section{Impulse to Energy Ratio over Time}
 
 The formulas for impulse and energy when force and power change over time are:
 
@@ -334,7 +334,7 @@ J(t) &= \int^t_0 F(x) \mathrm{d}x \\
 \end{align}
 \end{subequations}
 
-If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and  $t = \tau x$:
+If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and $t = \tau x$:
 
 \begin{subequations}
 \begin{align}
@@ -392,29 +392,74 @@ The impulse to energy ratio function over time:
 
 \begin{subequations}
 \begin{align}
-JE(x) &= \frac{J(x)}{E(x)} \\
+J2E(x) &= \frac{J(x)}{E(x)} \\
 &= \frac{\frac{A_F}{A_R} \tau P_{max} J_k(x)}{\tau P_{max} E_k(x)} \\
 &= \frac{A_F}{A_R} \frac{J_k(x)}{E_k(x)} \\
-&= \frac{A_F}{A_R} JE_k(x) \\
-JE_k(x) &= \frac{J_k(x)}{E_k(x)} \\
+&= \frac{A_F}{A_R} J2E_k(x) \\
+J2E_k(x) &= \frac{J_k(x)}{E_k(x)} \\
 &= \frac{4-e^{-x}+(2x-3)e^x}{2(1+(x-1)e^x)}
 \end{align}
 \end{subequations}
 
 \begin{sagesilent}
-jek = (4-exp(-x)+(2*x-3)*exp(x))/(2*(1+(x-1)*exp(x)))
-jek_plot = plot(jek, x, 0, 6) + plot(1-exp(-x), x, 0, 6)
-jek_plot.axes_labels(['x', 'JEk(x)<1-e(-x)'])
+j2ek = (4-exp(-x)+(2*x-3)*exp(x))/(2*(1+(x-1)*exp(x)))
+j2ek_plot = plot(j2ek, x, 0, 6) + plot(1-exp(-x), x, 0, 6)
+j2ek_plot.axes_labels(['x', 'J2Ek(x)<1-e(-x)'])
 \end{sagesilent}
 
-\sageplot[width=.75\textwidth]{jek_plot}
+\sageplot[width=.75\textwidth]{j2ek_plot}
 
-$1-e^{-x}$ is always above $JE_k(x)$.
-In fact, it is not until $x \approx 75$ that $JE_k(x)$ reach the same level as $1-e^{-x}$ was at $x = 5$, in other words $JE_k(75) \approx 1-e^{-5}$.
+$1-e^{-x}$ is always above $J2E_k(x)$.
+In fact, it is not until $x \approx 75$ that $J2E_k(x)$ reach the same level as $1-e^{-x}$ was at $x = 5$, in other words $J2E_k(75) \approx 1-e^{-5}$.
 
 To benefit from the use of larger coils it is important to energize the coil long enough for the effect to appear.
 If a very large coil is used in a motor the RPM must be very low.
 Once again, look at: \url{https://youtu.be/r52VWrIZui8?t=11m26s}
+
+\section{Impulse to Energy Ratio over $A_R$}
+
+We will now compare impulse to energy ratio between two coils with the same $A_L$ at a fixed time in seconds as a function of $A_R$. Let the impulse to energy ratio now be the function:
+
+\begin{equation}
+J2E(A_R,t) = \frac{A_F}{A_R} (1 - e^{- \frac{A_R t}{A_L}})
+\end{equation}
+
+Our reference coil will have $A_R = 1$ and we set $t = 5 \tau = 5 A_L/A_R$ for this coil so our comparison function is:
+
+\begin{subequations}
+\begin{align}
+J2E_{cmp}(x) &= \frac{J2E(x,5 A_L/1)}{J2E(1,5 A_L/1)} \\
+&= \frac{(4e^5+1)((10x-3)e^{10x}+4e^{5x}-1)e^{5-5x}}{(7e^{10}+4e^5-1)((5x-1)e^{5x}+1)x}
+\end{align}
+\end{subequations}
+
+Let us plot $J2E_{cmp}(A_R)$:
+
+\begin{sagesilent}
+j2ec = ((4*exp(5)+1) * ((10*x-3)*exp(10*x)+4*exp(5*x)-1)*exp(5-5*x)) / ((7*exp(10)+4*exp(5)-1) * ((5*x-1)*exp(5*x)+1)*x)
+j2ec_plot = plot(j2ec, x, 0, 10)
+j2ec_plot.axes_labels(['AR', 'J2Ecmp(AR)'])
+\end{sagesilent}
+
+\sageplot[width=.75\textwidth]{j2ec_plot}
+
+It turns out that when time is fixed there is a maximum increase in force:
+
+\begin{equation}
+\lim_{x \to +0} J2E_{cmp}(x) = \frac{20 e^5(4e^5+1)}{3(7e^{10}+4e^5-1)} \approx 3.80
+\end{equation}
+
+Let us plot $J2E_{cmp}(1/A_R)$ to reflect the increase in copper instead of increase in resistance-factor:
+
+\begin{sagesilent}
+j2eci = ((4*exp(5)+1) * ((10*(1/x)-3)*exp(10*(1/x))+4*exp(5*(1/x))-1)*exp(5-5*(1/x))) / ((7*exp(10)+4*exp(5)-1) * ((5*(1/x)-1)*exp(5*(1/x))+1)*(1/x))
+j2eci_plot = plot(j2eci, x, 0, 40)
+j2eci_plot.axes_labels(['1/AR', 'J2Ecmp(1/AR)'])
+\end{sagesilent}
+
+\sageplot[width=.75\textwidth]{j2eci_plot}
+
+For $1/A_R = 19$ the impulse is about $3.42$ times greater and circa $90 \percent$ of the maximum, and for $1/A_R = 9$ the impulse is about $3.05$ times greater and circa $80 \percent$ of the maximum. The time the coils are charged with respect to its own time-constant are $5/19 \tau$ and $5/9 \tau$ respectively.
 
 \section{Conclusion}
 
