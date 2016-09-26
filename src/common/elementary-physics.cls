@@ -15,6 +15,7 @@
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
 \usepackage{lscape}
+\usepackage{listings}
 \usepackage[backend=bibtex]{biblatex}
 \bibliography{../common/elementary-physics.bib}
 \usepackage{sagetex}

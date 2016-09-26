@@ -70,22 +70,19 @@ then we can say:
 
 \begin{subequations}
 \begin{align}
+y'' &= \frac{\mathrm{d}^2 y}{\mathrm{d}t^2} = \frac{\mathrm{d}v}{\mathrm{d}t} \\
+y' &= \frac{\mathrm{d}y}{\mathrm{d}t} = v \\
 y &= \int v \, \mathrm{d}t \\
-y' &= v \\
-y'' &= \frac{\mathrm{d}v}{\mathrm{d}t} \\
-f &= \frac{1}{2 \pi \sqrt{\frac{a}{c}}} \tag{frequency} \\
-q &= \frac{1}{b} \sqrt{a c} \tag{quality factor}\\
-z &= \frac{\mathrm{d}W}{\mathrm{d}y} \\
-P &= z v \tag{power} \\
-W &= z y = z v t \tag{work} \\
-b &= \frac{z}{v} \tag{parasite} \\
-P_b &= b v^2 \tag{losses} \\
-z = x' &= a \frac{\mathrm{d}v}{\mathrm{d}t} \\
-x &= a v \\
+z_a &= a y'' = a \frac{\mathrm{d}^2 y}{\mathrm{d}t^2} = a \frac{\mathrm{d}v}{\mathrm{d}t} \\
+z_b &= b y' = b \frac{\mathrm{d}y}{\mathrm{d}t} = b v \\
+z_c &= c y \\
 E_a &= \frac{a v^2}{2} \tag{energy} \\
-z' &= c \frac{\mathrm{d}y}{\mathrm{d}t} \\
-z &= c y \\
-E_c &= \frac{c y^2}{2} \tag{energy} 
+E_b &= b \int v^2 \, \mathrm{d}t \tag{losses} \\
+E_c &= \frac{c y^2}{2} \tag{energy} \\
+P &= z v \tag{power} \\
+W &= z v t = z y \tag{work} \\
+f &= \frac{1}{2 \pi \sqrt{\frac{a}{c}}} \tag{frequency} \\
+q &= \frac{1}{b} \sqrt{a c} \tag{quality factor}
 \end{align}
 \end{subequations}
 
@@ -106,22 +103,19 @@ $\Lambda = \Phi N$ and is referred to as magnetic flux linkage.
 \begin{subequations}
 \begin{align}
 L Q'' + R Q' + \frac{Q}{C} &= 0 \\
+Q'' &= \frac{\mathrm{d}^2 Q}{\mathrm{d}t^2} = \frac{\mathrm{d}I}{\mathrm{d}t} \\
+Q' &= \frac{\mathrm{d}Q}{\mathrm{d}t} = I \tag{definition of current} \\
 Q &= \int I \, \mathrm{d}t \\
-Q' &= I \tag{definition of current} \\
-Q'' &= \frac{\mathrm{d}I}{\mathrm{d}t} \\
-f &= \frac{1}{2 \pi \sqrt{L C}} \tag{frequency} \\
-q &= \frac{1}{R} \sqrt{\frac{L}{C}} \tag{quality factor}\\
-V &= \frac{\mathrm{d}W}{\mathrm{d}Q} \\
-P &= V I \tag{power} \\
-W &= V Q = V I t \tag{work} \\
-R &= \frac{V}{I} \tag{Ohm's law} \\
-P_R &= R I^2 \tag{losses} \\
-V = \Lambda' &= L \frac{\mathrm{d}I}{\mathrm{d}t} \tag{Faraday's law} \\
-\Lambda &= L I \tag{definition of inductance} \\
+V_L &= L Q'' = L \frac{\mathrm{d}^2 Q}{\mathrm{d}t^2} = L \frac{\mathrm{d}I}{\mathrm{d}t} \\
+V_R &= R Q' = R \frac{\mathrm{d}Q}{\mathrm{d}t} = R I \tag{Ohm's law} \\
+V_C &= \frac{Q}{C} \tag{definition of capacitance} \\
 E_L &= \frac{L I^2}{2} \tag{energy in a coil} \\
-V' &= \frac{1}{C} \frac{\mathrm{d}Q}{\mathrm{d}t} \\
-V &= \frac{Q}{C} \\
-E_C &= \frac{Q^2}{2 C} \tag{energy} 
+E_R &= R \int I^2 \, \mathrm{d}t \tag{losses} \\
+E_C &= \frac{Q^2}{2 C} \tag{energy in a capacitor} \\
+P &= V I \tag{power} \\
+W &= V I t = V Q \tag{work} \\
+f &= \frac{1}{2 \pi \sqrt{L C}} \tag{frequency} \\
+q &= \frac{1}{R} \sqrt{\frac{L}{C}} \tag{quality factor}
 \end{align}
 \end{subequations}
 
@@ -137,22 +131,19 @@ The variables $m,b,k,v,p,x,F$ are used.
 \begin{subequations}
 \begin{align}
 m x'' + b x' + k x &= 0 \\
+x'' &= \frac{\mathrm{d}^2 x}{\mathrm{d}t^2} = \frac{\mathrm{d}v}{\mathrm{d}t} \tag{definition of acceleration} \\
+x' &= \frac{\mathrm{d}x}{\mathrm{d}t} = v \tag{definition of velocity} \\
 x &= \int v \, \mathrm{d}t \\
-x' &= v \tag{definition of velocity} \\
-x'' &= \frac{\mathrm{d}v}{\mathrm{d}t} \tag{definition of acceleration} \\
-f &= \frac{1}{2 \pi \sqrt{\frac{m}{k}}} \tag{frequency} \\
-q &= \frac{\sqrt{m k}}{b} \tag{quality factor}\\
-F &= \frac{\mathrm{d}W}{\mathrm{d}x} \\
-P &= F v \tag{power} \\
-W &= F x = F v t \tag{work} \\
-b &= \frac{F}{v} \tag{parasite} \\
-P_b &= b v^2 \tag{losses} \\
-F = p' &= m \frac{\mathrm{d}v}{\mathrm{d}t} \tag{Newton's 2nd law} \\
-p &= m v \tag{definition of momentum} \\
+F_m &= m x'' = m \frac{\mathrm{d}^2 x}{\mathrm{d}t^2} = m \frac{\mathrm{d}v}{\mathrm{d}t} = m a \tag{Newton's 2nd law} \\
+F_b &= b x' = b \frac{\mathrm{d}x}{\mathrm{d}t} = b v \\
+F_k &= k x \tag{Hooke's law} \\
 E_m &= \frac{m v^2}{2} \tag{kinetic energy} \\
-F' &= k \frac{\mathrm{d}x}{\mathrm{d}t} \\
-F &= k x \tag{Hooke's law} \\
-E_k &= \frac{k x^2}{2} \tag{energy in a spring} 
+E_b &= b \int v^2 \, \mathrm{d}t \tag{losses} \\
+E_k &= \frac{k x^2}{2} \tag{energy in a spring} \\
+P &= F v \tag{power} \\
+W &= F v t = F x \tag{work} \\
+f &= \frac{1}{2 \pi \sqrt{\frac{m}{k}}} \tag{frequency} \\
+q &= \frac{\sqrt{m k}}{b} \tag{quality factor}
 \end{align}
 \end{subequations}
 
@@ -169,22 +160,19 @@ $\Lambda = \Phi N$ and is referred to as magnetic flux linkage.
 \begin{subequations}
 \begin{align}
 C \Lambda'' + \frac{\Lambda'}{R} + \frac{\Lambda}{L} &= 0 \\
+\Lambda'' &= \frac{\mathrm{d}^2 \Lambda}{\mathrm{d}t^2} = \frac{\mathrm{d}V}{\mathrm{d}t} \\
+\Lambda' &= \frac{\mathrm{d} \Lambda}{\mathrm{d}t} = V \tag{Faraday's law} \\
 \Lambda &= \int V \, \mathrm{d}t \\
-\Lambda' &= V \\
-\Lambda'' &= \frac{\mathrm{d}V}{\mathrm{d}t} \\
-f &= \frac{1}{2 \pi \sqrt{C L}} \tag{frequency} \\
-q &= R \, \sqrt{\frac{C}{L}} \tag{quality factor}\\
-I &= \frac{\mathrm{d}W}{\mathrm{d}\Lambda} \\
+I_C &= C \Lambda'' = C \frac{\mathrm{d}^2 \Lambda}{\mathrm{d}t^2} = C \frac{\mathrm{d}V}{\mathrm{d}t} \\
+I_R &= \frac{\Lambda'}{R} = \frac{1}{R} \frac{\mathrm{d}\Lambda}{\mathrm{d}t} = \frac{V}{R} \\
+I_L &= \frac{\Lambda}{L} \tag{definition of inductance} \\
+E_C &= \frac{C V^2}{2} \tag{energy in a capacitor} \\
+E_R &= \frac{V^2}{R} \int V^2 \, \mathrm{d}t \tag{losses} \\
+E_L &= \frac{\Lambda^2}{2 L} \tag{energy in a coil} \\
 P &= I V \tag{power} \\
-W &= I \Lambda = I V t \tag{work} \\
-\frac{1}{R} &= \frac{I}{V} \tag{parasite} \\
-P_R &= \frac{V^2}{R} \tag{losses} \\
-I = Q' &= C \frac{\mathrm{d}V}{\mathrm{d}t} \\
-Q &= C V \tag{definition of capacitance} \\
-E_c &= \frac{C V^2}{2} \tag{energy in a capacitor} \\
-I' &= \frac{1}{L} \frac{\mathrm{d}\Lambda}{\mathrm{d}t} \\
-I &= \frac{\Lambda}{L} \\
-E_L &= \frac{\Lambda^2}{2 L} \tag{energy} 
+W &= I V t = I \Lambda \tag{work} \\
+f &= \frac{1}{2 \pi \sqrt{C L}} \tag{frequency} \\
+q &= R \sqrt{\frac{C}{L}} \tag{quality factor}
 \end{align}
 \end{subequations}
 
@@ -200,22 +188,19 @@ The variables $k^{-1},b^{-1},m^{-1},F,x,p,v$ are used.
 \begin{subequations}
 \begin{align}
 \frac{p''}{k} + \frac{p'}{b} + \frac{p}{m} &= 0 \\
+p'' &= \frac{\mathrm{d}^2 p}{\mathrm{d}t^2} = \frac{\mathrm{d}F}{\mathrm{d}t} \\
+p' &= \frac{\mathrm{d}p}{\mathrm{d}t} = F \\
 p &= \int F \, \mathrm{d}t \tag{definition of impulse} \\
-p' &= F \\
-p'' &= \frac{\mathrm{d}F}{\mathrm{d}t} \\
-f &= \frac{1}{2 \pi \sqrt{\frac{m}{k}}} \tag{frequency} \\
-q &= \frac{b}{\sqrt{k m}} \tag{quality factor}\\
-v &= \frac{\mathrm{d}W}{\mathrm{d}p} \\
+v_k &= \frac{p''}{k} = \frac{1}{k} \frac{\mathrm{d}^2 p}{\mathrm{d}t^2} = \frac{1}{k} \frac{\mathrm{d}F}{\mathrm{d}t} \\
+v_b &= \frac{p'}{b} = \frac{1}{b} \frac{\mathrm{d}p}{\mathrm{d}t} = \frac{F}{b} \\
+v_m &= \frac{p}{m} \tag{definition of momentum} \\
+E_k &= \frac{F^2}{2 k} \tag{energy in a spring} \\
+E_b &= \frac{1}{b} \int F^2 \, \mathrm{d}t \tag{losses} \\
+E_m &= \frac{p^2}{2 m} \tag{kinetic energy} \\
 P &= v F \tag{power} \\
-W &= v p = v F t \tag{work} \\
-\frac{1}{b} &= \frac{v}{F} \tag{parasite} \\
-P_b &= \frac{F^2}{b} \tag{losses} \\
-v = x' &= \frac{1}{k} \frac{\mathrm{d}F}{\mathrm{d}t} \\
-x &= \frac{F}{k}\\
-E_k &= \frac{F^2}{2 k} \tag{energy} \\
-v' &= \frac{1}{m} \frac{\mathrm{d}p}{\mathrm{d}t} \\
-v &= \frac{p}{m} \\
-E_m &= \frac{p^2}{2 m} \tag{energy} 
+W &= v F t = v p \tag{work} \\
+f &= \frac{1}{2 \pi \sqrt{\frac{m}{k}}} \tag{frequency} \\
+q &= \frac{b}{\sqrt{k m}} \tag{quality factor}
 \end{align}
 \end{subequations}
 
@@ -230,16 +215,16 @@ Angular velocity-momentum $I,C,\kappa,\omega,L,\theta,\tau$ and it's inverse.
 Although the components in $LRC$ and $mbk$ are considered in series and the components in $CRL$ and $kbm$ in parallel any system can be compared to any other:
 
 \begin{center}
-\begin{tabular}{c|c|c|c}
-\head{LRC} & \head{mbk} & \head{CRL} & \head{kbm} \\
+\begin{tabular}{c|c|c|c|c|c}
+\head{$LRC$} & \head{$mbk$} & \head{$IC \kappa$} & \head{$CRL$} & \head{$kbm$} & \head{$\kappa IC$} \\
 \hline
-$L$       & $m$ & $C$       & $k^{-1}$ \\
-$R$       & $b$ & $R^{-1}$  & $b^{-1}$ \\
-$C^{-1}$  & $k$ & $L^{-1}$  & $m^{-1}$ \\
-$I$       & $v$ & $V$       & $F$ \\
-$\Lambda$ & $p$ & $Q$       & $x$ \\
-$Q$       & $x$ & $\Lambda$ & $p$ \\
-$V$       & $F$ & $I$       & $v$
+$L$       & $m$ & $I$      & $C$       & $k^{-1}$ & $\kappa^{-1}$ \\
+$R$       & $b$ & $C$      & $R^{-1}$  & $b^{-1}$ & $C^{-1}$ \\
+$C^{-1}$  & $k$ & $\kappa$ & $L^{-1}$  & $m^{-1}$ & $I^{-1}$ \\
+$I$       & $v$ & $\omega$ & $V$       & $F$      & $\tau$ \\
+$\Lambda$ & $p$ & $L$      & $Q$       & $x$      & $\theta$ \\
+$Q$       & $x$ & $\theta$ & $\Lambda$ & $p$      & $L$ \\
+$V$       & $F$ & $\tau$   & $I$       & $v$      & $\omega$
 \end{tabular}
 \end{center}
 

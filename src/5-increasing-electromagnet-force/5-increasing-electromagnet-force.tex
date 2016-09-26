@@ -11,7 +11,7 @@
 
 \section{Abstract}
 
-Since the concept of the electromagnet is present in both motors and generators we find it interesting to study the relationship between the electrical power the coil draws and the mechanical force with which the coil attracts a piece of ferromagnetic material [TODO: not a magnet]. The focus is usually on the current and the number of turns but we include the voltage needed to deliver the current and then calculate the force to power ratio.
+Since the concept of the electromagnet is present in both motors and generators we find it interesting to study the relationship between the electrical power the coil draws and the mechanical force with which the coil attracts a piece of ferromagnetic material or a magnet. The focus is usually on the current and the number of turns but we include the voltage needed to deliver the current and then calculate the force to power ratio.
 
 \section{Clues}
 
@@ -41,8 +41,8 @@ We plot $F/P$ as a function of $A$:
 
 The only outstanding data-point in this collection seems to be the fourth electromagnet.
 
-The same investigation can be done on PMDC motors. [TODO: not altogether true]
-Plot the torque times speed to input power ratio as a function to its size and you will see that bigger motors give higher values until the RPM gets to high for the coils or more commutator segments are introduced splitting the coils.
+%The same investigation can be done on PMDC motors. [TODO: not altogether true]
+%Plot the torque times speed to input power ratio as a function to its size and you will see that bigger motors give higher values until the RPM gets to high for the coils or more commutator segments are introduced splitting the coils.
 
 \section{Formula}
 
@@ -61,10 +61,17 @@ B = \frac{\mu N I}{l}
 where $l$ is the effective length of the magnetic flux path, as\cite{wpele}:
 
 \begin{equation}
-F = \frac{\mu^2}{2 \, \mu_0 \, g^2} \, N^2 \, I^2 \, A
+F = \frac{\mu^2 \, A}{2 \, \mu_0} \, \frac{N_1 I_1 \, N_2 I_2}{g^2}
 \end{equation}
 
 where $l$ now is $g$, the air-gap.
+It resembles Coulomb's law and Newton's law of gravitation.
+All three are inverse-square laws, where force is inversely proportional to the square of the distance.
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
+
 Let us introduce $A_F$ to make it easier to read:
 
 \begin{equation}
