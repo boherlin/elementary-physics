@@ -8,6 +8,6 @@ clean: TARGET=clean
 tidy: TARGET=tidy
 
 all edit pdf read clean tidy :
-	@exec $(MAKE) -C tex $(TARGET)
+	@exec $(MAKE) -C workspace $(TARGET)
 
 

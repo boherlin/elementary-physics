@@ -17,7 +17,8 @@
 \usepackage{lscape}
 \usepackage{listings}
 \usepackage[backend=bibtex]{biblatex}
-\bibliography{../common/elementary-physics.bib}
+\bibliography{elementary-physics.bib}
+\usepackage{tikz}
 \usepackage{sagetex}
 
 \setlength{\sagetexindent}{10ex}
