@@ -1,11 +1,24 @@
+# assumes ~/texmf points to ../texmf, for example:
+# ln -s ../texmf ~/texmf
+#
+# depends on sagemath, for example:
+# sudo apt-add-repository -y ppa:aims/sagemath
+# sudo apt-get update
+# sudo apt-get install sagemath-upstream-binary
+# sudo cp -R /usr/lib/sagemath/local/share/texmf/tex /usr/local/share/texmf
+# sudo texhash /usr/local/share/texmf
+
 PDF = ../../pdf
-COMMON = ../common
+TEXMF = ../texmf
+LAST_COMMENT = ${TEXMF}/tex/latex/last-comment.tex
+CLASS = ${TEXMF}/tex/latex/local/elementary-physics.cls
+BIB = ${TEXMF}/bibtex/bib/local/elementary-physics.bib
 
 .PHONY: all edit pdf read clean test sage tidy
 
 all pdf : ${PDF}/${FILENAME}.pdf
 
-${PDF}/${FILENAME}.pdf : ${FILENAME}.tex *.png ${COMMON}/last-comment.tex ${COMMON}/elementary-physics.cls ${COMMON}/elementary-physics.bib
+${PDF}/${FILENAME}.pdf : ${FILENAME}.tex *.png ${LAST_COMMENT} ${CLASS} ${BIB}
 	pdflatex ${FILENAME}.tex
 	sage ${FILENAME}.sagetex.sage
 	bibtex ${FILENAME}.aux
