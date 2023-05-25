@@ -1,7 +1,7 @@
 \documentclass[]{elementary-physics}
 
-\title{5. Increasing Electromagnet Force}
-\date{2015-11-19 v0.9.4}
+\title{5. Increasing Energy}
+\date{2023-01-05 v0.1}
 
 \begin{document}
 
@@ -11,555 +11,125 @@
 
 \section{Abstract}
 
-Since the concept of the electromagnet is present in both motors and generators we find it interesting to study the relationship between the electrical power the coil draws and the mechanical force with which the coil attracts a piece of ferromagnetic material or a magnet. The focus is usually on the current and the number of turns but we include the voltage needed to deliver the current and then calculate the force to power ratio.
+[TODO rename file]
 
-\section{Clues}
+\section{Background}
 
-Go to any site with detailed information on electromagnets of various sizes, like Highcap\cite{highcap}, and collect the data, normalize it and calculate $F/P$:
+In physics and chemistry, the law of conservation of energy\cite{energy} states that the total energy of an isolated system remains constant; it is said to be conserved over time.
 
-\begin{center}
-\begin{tabular}{r|r|r|r|r|r|r}
-\head{d $mm$} & \head{h $mm$} & \head{F $N$} & \head{P $W$} & \head{F/P} & \head{A $mm^2$} & \head{F/PA} \\
-\hline
-20 &	15 &	20 &	3 &	6.5 &	300 &	0.022 \\
-25 &	20 &	49 &	4 &	12.3 &	500 &	0.025 \\
-30 &	22 &	98 &	4 &	24.5 &	660 &	0.037 \\
-34 &	18 &	177 &	4 &	44.1 &	612 &	0.072 \\
-40 &	20 &	196 &	8 &	24.5 &	800 &	0.031 \\
-49 &	21 &	392 &	10 &	39.2 &	1029 &	0.038 \\
-60 &	34 &	686 &	13 &	52.8 &	2040 &	0.026 \\
-65 &	30 &	785 &	13 &	60.3 &	1950 &	0.031
-\end{tabular}
-\end{center}
+This implies that the sum of all powers in the system equals to zero which is guaranteed by Kirchhoff's circuit laws\cite{Kirchhoff} and Newton's 3rd law of motion\cite{Newton}.
 
-As you can see we have also calculated $A$ as a kind of cross-section area $A=d \, h$ and $F/PA$ which seems as if it could be a constant.
-We plot $F/P$ as a function of $A$:
+But what about energy transfer? Is the amount of energy leaving one system always the same as the amount of energy entering another? Would double-entry\cite{DoubleEntry} bookkeeping on power always balance?
 
-\begin{figure}[ht] \centering
-	\includegraphics[scale=.4]{fp-of-a-2} \caption{F/P(A)}
-\end{figure}
-
-The only outstanding data-point in this collection seems to be the fourth electromagnet.
-
-%The same investigation can be done on PMDC motors. [TODO: not altogether true]
-%Plot the torque times speed to input power ratio as a function to its size and you will see that bigger motors give higher values until the RPM gets to high for the coils or more commutator segments are introduced splitting the coils.
-
-\section{Formula}
-
-Searching for a formula on this relationship we found\cite{wpele,gbet}:
+For instance; consider the equation of a harmonic oscillator\cite{oscillator}, a LRC-circuit driven by an AC-source expressed as a sum of voltages
 
 \begin{equation}
-F = \frac{B^2 A}{2 \, \mu_0}
+Lq'' + Rq' + C^{-1}q - sin(\omega t) = 0
 \end{equation}
 
-which can be rewritten using:
+Once solved we can change the equation from a sum of voltages to a sum of powers by multiplying with $q'$
 
 \begin{equation}
-B = \frac{\mu N I}{l}
+Lq''q' + Rq'q' + C^{-1}qq' - sin(\omega t)q' = 0
 \end{equation}
 
-where $l$ is the effective length of the magnetic flux path, as\cite{wpele}:
+But two equations are missing; one that contains $-Rq'q'$ where the heat is going to and one that contains $sin(wt)q'$ where the power running the generator is coming from, now we have a system of equations:
 
-\begin{equation}
-F = \frac{\mu^2 \, A}{2 \, \mu_0} \, \frac{N_1 I_1 \, N_2 I_2}{g^2}
-\end{equation}
-
-where $l$ now is $g$, the air-gap.
-It resembles Coulomb's law and Newton's law of gravitation.
-All three are inverse-square laws, where force is inversely proportional to the square of the distance.
-
-
-%%%%%%%%%%%%%%%%%%%%%
-
-
-Let us introduce $A_F$ to make it easier to read:
-
-\begin{equation}
-A_F = \frac{\mu^2 A}{2 \, \mu_0 \, g^2}
-\end{equation}
-
-and we get:
-
-\begin{equation}
-F = A_F \, N^2 \, I^2
-\end{equation}
-
-Let us introduce a new concept; the relationship between the DC resistance and the number of turns in an inductor:
-
-\begin{equation}
-R = A_R \, N^2
-\end{equation}
-
-where $A_R$ is the DC resistance factor of the inductor.
-Roughly we have:
-
-\begin{equation}
-A_R = 11 \rho \, \frac{r}{d \, l}
-\end{equation}
-
-The definition of $A_R$ makes it possible to rewrite the formula:
 
 \begin{subequations}
 \begin{align}
-F &= \frac{A_F}{A_R} \, R \, I^2 \\
-&= \frac{A_F}{A_R} \, P \\
-\frac{F}{P} &= \frac{A_F}{A_R}
+other.terms - Rq'q' = 0 \\
+Lq''q' + Rq'q' + C^{-1}qq' - sin(\omega t)q' = 0 \\
+other.terms + sin(\omega t)q' = 0
 \end{align}
 \end{subequations}
 
-It seems that the $F/P$ ratio for an electromagnet is not a function of the number of turns, but apart from core-related parameters rather the amount of copper-wire; the more wire-mass, the bigger the form, the smaller the $A_R$ the stronger force per input-power. We also see that the force is proportional to the power, when we increase the power the force increase.
 
-\pagebreak
+We will ignore the heat and focus on the electro-mechanicals; a wheel with magnets and stationary coils. The two equations involved are Faraday’s Law\cite{Faraday} $V = Blv$ on the electrical side and Lorentz force\cite{Lorentz} $F = BlI$ on the mechanical side. They eace replace one of the two $sin(\omega t)$ where B is now a function $B(\theta)$.
 
-\section{Experiment}
-
-Eight coils a-h have been tested, five on a small form and three on a big form.
-They all had welding rods as their cores.
-
-\begin{figure}[ht] \centering
-	\includegraphics[scale=1.7]{coils-a-e} \caption{Coils a-e}
-\end{figure}
-
-\begin{figure}[ht] \centering
-	\includegraphics[scale=1.7]{coils-f-h} \caption{Coils f-h}
-\end{figure}
-
-The testing was conducted using a small plastic tube and a stack of small magnets that could easily slide in the tube.
-The coil to be tested was placed on a table with its core in a vertical position, the tube with the magnets was placed on top of the core so the magnets would be lifted once the current started to flow.
-Voltage and current were measured when the magnets were lifted to the same height as for coil c.
-The current chosen for coil c was related to the limits of the power-supply.
-Both voltage and current were measured with meters external to the power-supply.
-[TODO: this needs to be redone]
-
-\begin{landscape}
-
-\tiny
-\begin{tabular}{	r	|	l	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	|	r	}
-\head{	coil	} & \head{	comment	} & \head{	$r$	} & \head{	$d$	} & \head{	$l$	} & \head{	$\varrho$ } & \head{	$A_R$	} & \head{	$A$	} & \head{	$m_{tot}$	} & \head{	$m_{Cu}$	} & \head{	$W_d$	} & \head{	$N$	} & \head{	$R$	} & \head{	$A_R$	} & \head{	$L$	} & \head{	$A_L$	} & \head{	$V$	} & \head{	$I$	} & \head{	$P$	} & \head{	$N^2 I^2 A$	} & \head{	$P m$	} \\
-\hline																																										
-		&	air core, no wire	&	8.4	&	8.7	&	34.5	&	1	&	5.2	&		&	4.2	&		&		&		&		&		&		&		&		&		&		&		&		\\
-		&	welding rods core, no wire	&	8.4	&	8.7	&	34.5	&	1	&	5.2	&	30	&	11.0	&		&		&		&		&		&		&		&		&		&		&		&		\\
-	a	&	1 x 1, full	&	8.4	&	8.7	&	34.5	&	1	&	5.2	&	30	&	94.4	&	83.4	&	0.6	&	693	&	2.4	&	5.1	&	8.13	&	16.93	&	3.8	&	1.4	&	5.35	&	29.4	&	446	\\
-	b	&	1 x 1, half length	&	8.4	&	8.7	&	17.3	&	1	&	10.4	&	30	&	54.9	&	43.8	&	0.6	&	350	&	1.2	&	10.1	&	2.57	&	20.98	&	3.3	&	2.1	&	7.01	&	16.5	&	307	\\
-	c	&	1 x 1, half depth	&	6.2	&	4.3	&	34.5	&	1	&	7.7	&	30	&	44.3	&	33.3	&	0.6	&	350	&	1.0	&	8.5	&	2.04	&	16.65	&	4.0	&	2.9	&	11.67	&	31.8	&	388	\\
-	d	&	1 x 2, (in series)	&	8.4	&	8.7	&	34.5	&	1	&	5.2	&	30	&	99.7	&	88.6	&	0.6	&	700	&	2.5	&	5.2	&	8.25	&	16.84	&	3.9	&	1.4	&	5.50	&	29.4	&	487	\\
-	d	&	1 x 1, (half wires)	&	8.4	&	8.7	&	34.5	&	0.5	&	10.4	&	30	&	99.7	&	44.3	&	0.6	&	350	&	1.3	&	10.4	&	2.06	&	16.82	&	4.3	&	2.8	&	11.84	&	28.2	&	525	\\
-	d	&	2 x 1, (in parallel)	&	8.4	&	8.7	&	34.5	&	1	&	5.2	&	30	&	99.7	&	88.6	&	0.6	&	350	&	0.7	&	6.0	&	2.07	&	16.90	&	2.6	&	2.8	&	7.49	&	29.9	&	664	\\
-	e	&	1 x 1, full	&	8.4	&	8.7	&	34.5	&	1	&	5.2	&	30	&	107.3	&	96.3	&	0.2	&	6000	&	177.0	&	4.9	&	672.00	&	18.67	&	26.3	&	0.1	&	3.89	&	23.8	&	375	\\
-		&	air core, no wire	&	28.7	&	32.5	&	77.6	&	1	&	2.1	&		&	39	&		&		&		&		&		&		&		&		&		&		&		&		\\
-		&	welding rods core, no wire	&	28.7	&	32.5	&	77.6	&	1	&	2.1	&	302	&	241	&		&		&		&		&		&		&		&		&		&		&		&		\\
-	f	&	4 x 1, not full	&	24.5	&	24.4	&	77.6	&	1	&	2.4	&	302	&	1438	&	1197	&	1	&	300	&	0.3	&	2.8	&	4.07	&	45.22	&	0.8	&	1.7	&	1.38	&	78.7	&	1650	\\
-	g	&	5 x (3*2), overfull	&	29.2	&	33.7	&	77.6	&	1	&	2.1	&	302	&	2576	&	2335	&	0.6	&	1224	&	2.7	&	1.8	&	68.89	&	45.98	&	1.2	&	0.4	&	0.50	&	77.1	&	1171	\\
-	g	&	5 x 3, overfull	&	29.2	&	33.7	&	77.6	&	0.5	&	4.1	&	302	&	2576	&	1168	&	0.6	&	612	&	1.5	&	4.1	&	17.14	&	45.77	&	1.2	&	0.8	&	0.98	&	70.3	&	1141	\\
-	g	&	(2*5) x 3, overfull	&	29.2	&	33.7	&	77.6	&	1	&	2.1	&	302	&	2576	&	2335	&	0.6	&	612	&	0.7	&	2.0	&	17.15	&	45.79	&	0.8	&	0.8	&	0.62	&	74.3	&	1458	\\
-	h	&	1 x 1, almost full	&	26.7	&	28.4	&	77.6	&	1	&	2.2	&	302	&	2322	&	2081	&	0.5	&	7200	&	92.6	&	1.8	&	2760.00	&	53.24	&	7.1	&	0.1	&	0.52	&	83.4	&	1082	\\
-\end{tabular} 																	
-																								\\
-\\
-\\
-
-\begin{tabular}{	l	|	l	|	l	}
-\head{header} & \head{unit} & \head{definition} \\
-\hline																				coil		&				& label	\\
-comment		&				& p x s number of strands in parallel times number of strands in series	\\
-$r$			& $mm$			& mean radius for the windings \\
-$d$			& $mm$			& depth for the windings \\
-$l$			& $mm$			& core-length \\
-$\varrho$	&				& windings density, how much used, times $8/11$ \\
-$A_R$		& $\mu \ohm$	& calculated from dimensions using formula \\
-$A$			& $mm^2$		& core area \\
-$m_{tot}$	& $g$			& mass \\
-$m_{Cu}$	& $g$			& copper mass \\
-$W_d$		& $mm$			& wire diameter \\
-$N$			&				& number of turns \\
-$R$			& $\ohm$		& resistance \\
-$A_R$		& $\mu \ohm$	& calculated from resistance \\
-$L$			& $mH$			& inductance \\
-$A_L$		& $nH$			& calculated from inductance \\
-$V$			& $V$			& voltage applied \\
-$I$			& $A$			& current drawn \\
-$P$			& $W$			& power drawn \\
-$N^2 I^2 A$	& $A^2 mm^2$	& part of the original expression for F \\
-$P m$		& $W g$			& power times mass \\
-\end{tabular}
-
-\end{landscape}
-
-The reading of the magnet lift, our force-measurement device, was not very exact.
-
-The pole-area of the magnets was $50 mm^2$, very well suited for coils a-e in the first set, but coil f-h in the second set has a much greater core-area than the magnets pole-area which makes an exact comparison between the two sets of coils difficult. 
-The big coils in the experiment are producing a field of which most just pass the magnet by without affecting it.
-
-During the experiment the coils got warm and the resistance changed.
-
-We hoped for a smaller spread of the $N^2 I^2 A$ values within each of the two coil-sets.
-
-Coils that stick out are; d with a lower P, e with a lower P, f with a lot higher P and h with a lower P than expected.
-
-Despite the spread in the results the difference between the power used in the two coil-sets is very clear; although the coil-core area A in the second set is much larger than the pole-area of the magnets, the second set with the bigger coils need less power to produce the same magnet-lift.
-
-Watch a short, hasty and inexact version of the experiment with coil a,b and e at \url{https://www.youtube.com/watch?v=IIeRR6NjMPQ}.
-
-\section{Force to Power Ratio over Time}
-
-The above theories and experiment are dealing with the steady-state of the coil where the current is steady at its maximum and can be determined from the applied DC voltage and the internal DC resistance in the coil as $I = V/R$. 
-This state is after $5 \tau$, where $\tau$ is the time-constant of the coil defined as:
-
-\begin{equation}
-\tau = \frac{L}{R} = \frac{A_L N^2}{A_R N^2} = \frac{A_L}{A_R}
-\end{equation}
-
-$\tau$, measured in seconds, is constant for a given core and form regardless of the choice of wire gauge as long as the form is equally filled with wire.
-This means that when a bigger coil is used to increase the force to power ratio, which usually means that $A_L$ increase and $A_R$ decrease, $\tau$ increase.
-
-Before $5 \tau$ the current is defined by the differential equation:
-
-\begin{equation}
-L i' + R i = V
-\end{equation}
-
-The solution to this equation is:
+We get
 
 \begin{subequations}
 \begin{align}
-i(t) &= \frac{V}{R} (1 - e^{- \frac{R t}{L}}) \\
-&= \frac{V}{R} (1 - e^{- \frac{t}{\tau}})
+Lq'' + Rq' + C^{-1}q - Bl\theta' = 0 \\
+J\theta'' + r\theta' + Blq' = 0
 \end{align}
 \end{subequations}
 
-The main component here is the exponential decay function\cite{expdec} $N(t)=N_0e^{-\lambda t}$, which by going to zero 	makes the current go to $V/R$.
-
-We set $L = R = V = 1$ and plot $i(t)$:
-
-\begin{sagesilent}
-(L, R, V, t, x) = var('L, R, V, t, x')
-assume(L>0)
-assume(R>0)
-assume(V>0)
-assume(t>0)
-y = function('y', t)
-ideq = L*diff(y,t) + R*y == V
-ioft = desolve(de=ideq, dvar=y, ivar=t, ics = [0,0])
-istd = ioft.substitute(L=1, R=1, V=1)
-istd_plot = plot(istd(t), t, 0, 6)
-istd_plot.axes_labels(['t', 'i(t)'])
-\end{sagesilent}
-
-\sageplot[width=.75\textwidth]{istd_plot}
-
-As $t$ approach $5\tau$, in this case $\tau = L/R = 1$, $i(t)$ approaches $V$, in this case $V=1$.
-We have:
+where $J$ is the inertia of the wheel and $r$ is the friction. If we change the equations to powers
 
 \begin{subequations}
 \begin{align}
-F(t) &= A_F \, N^2 \, i^2(t) \\
-P(t) &= V \, i(t)
+Lq''q' + Rq'q' + C^{-1}qq' - Bl\theta'q' = 0 \\
+J\theta''\theta' + r\theta'\theta' + Blq'\theta' = 0
 \end{align}
 \end{subequations}
 
-and so the force to power ratio is proportional to $i(t)$, or rather to $1-e^{-x}$:
+we have a system where the two equations communicate energy in a balanced way. In this paper we question that it is always so, experiments suggests that the two $B$-functions are usually but not always the same.
 
-\begin{subequations}
-\begin{align}
-F2P(t) &= \frac{F(t)}{P(t)} \\
-&= \frac{A_F \, N^2 \, i^2(t)}{V \, i(t)} \\
-&= \frac{A_F N^2}{V} \, i(t) \\
-&= \frac{A_F N^2}{V} \, \frac{V}{R} (1 - e^{- \frac{t}{\tau}}) \\
-&= \frac{A_F}{A_R} (1 - e^{- \frac{t}{\tau}})
-\end{align}
-\end{subequations}
+\section{Simulations}
 
-and maximum force to power ratio is after $t = 5 \tau$.
+To aid us in our research we have used a free simulator called FEMM\cite{FEMM} which can be scripted using Lua 4.0\cite{Lua}. There is also a command-line version of FEMM called xfemm\cite{xfemm} that we have used heavily.
 
-We have assumed that $g$ is constant and not a function of time.
-If the force from the electromagnet is to be of any use it has to accelerate some mass.
-In that case $g$ change and the force to power ratio no longer follows $i(t)$.
-If the mass to be accelerated is big enough the acceleration will be small enough to be discarded.
-But if the coil is part of a motor the mass is moving all the time so $g$ is constantly changing.
-One solution might be to put the rotor magnet inside the motor coil, preferably inside a motor coil that is huge as a barrel\cite{jonew}: \url{https://youtu.be/XryGfWn3ALk?t=25m10s}
+The femm programs allows us to create snapshots of set-ups with coils and magnets. The simulation then provides us with torque and flux-linkage.
 
-\section{Force to Power Ratio over $A_R$}
+[TODO check if still valid and rewrite for latex]
 
-We will now compare force to power ratio between two coils with the same $A_L$ at a fixed time in seconds as a function of $A_R$. Let the force to power ratio now be the function:
+ 1: select a wire-diameter D
+ 2: calculate 
+    number of turns N = 56\% * coil-area / wire-area
+    resistance R = pCu * 1000 * wire-length / wire-area 
+      where pCu = 1.72E-8
+    currrent for 1 W, I = sqrt(1 / R)
+ 3: test the coil twice (with and without current) for each angle
+ 4: get impulse T = the sum of all torque (with current minus without current) times delta-angle (integrate)
+ 5: get the flux-linkage when no current
+ 6: get the flux-linkage divided by delta-angle to get the voltage (derivate)
+ 7: get impulse V = the sum of all voltage times delta-angle (integrate)
+ 8: assuming linearity we calculate for each coil
+    Tk = T/N*I
+    Vk = V/N
+    Rk = R/N\^2
+    Nk = 56\% * coil-area * 4/pi
+    VpT = Vk / Tk
+ 9: VpT > 1 is a generator-coil and VpT < 1 is a motor-coil
+10: we can now choose any wire diameter D and calculate
+    N = Nk/D\^2
+    T = Tk*N*I
+    V = Vk*N
+    R = Rk*N\^2
+11: for each pair of coils, mo and gen, with any wire, moD and genD, calculate a relative torque for comparisom between coil-pairs
+    T = moT - genT = (moTk*moN - genTk*genN)*I
+      where I = (genV - moV) / (genR + moR)
 
-\begin{equation}
-F2P(A_R,t) = \frac{A_F}{A_R} (1 - e^{- \frac{A_R t}{A_L}})
-\end{equation}
 
-Our reference coil will have $A_R = 1$ and we set $t = 5 \tau = 5 A_L/A_R$ for this coil so our comparison function is:
 
-\begin{subequations}
-\begin{align}
-F2P_{cmp}(x) &= \frac{F2P(x,5 A_L/1)}{F2P(1,5 A_L/1)} \\
-&= \frac{e^5-e^{5(1-x)}}{(e^5-1)x}
-\end{align}
-\end{subequations}
+\section{Algorithms}
 
-Let us plot $F2P_{cmp}(A_R)$:
+[TODO Check code and algorithms in Lua and FEMM]
+[Maybe by Odd Larsson?]
 
-\begin{sagesilent}
-f2pc = (exp(5)-exp(5*(1-x)))/((exp(5)-1)*x)
-f2pc_plot = plot(f2pc, x, 0, 10)
-f2pc_plot.axes_labels(['AR', 'F2Pcmp(AR)'])
-\end{sagesilent}
+\section{Experiments}
 
-\sageplot[width=.75\textwidth]{f2pc_plot}
-
-It turns out that when time is fixed there is a maximum increase in force:
-
-\begin{equation}
-\lim_{x \to +0} F2P_{cmp}(x) = \frac{5 e^5}{e^5-1} \approx 5.03
-\end{equation}
-
-Let us plot $F2P_{cmp}(1/A_R)$ to reflect the increase in copper instead of increase in resistance-factor:
-
-\begin{sagesilent}
-f2pci = (exp(5)-exp(5*(1-(1/x))))/((exp(5)-1)*(1/x))
-f2pci_plot = plot(f2pci, x, 0, 40)
-f2pci_plot.axes_labels(['1/AR', 'F2Pcmp(1/AR)'])
-\end{sagesilent}
-
-\sageplot[width=.75\textwidth]{f2pci_plot}
-
-For $1/A_R = 24$ the force is about $4.5$ times greater and circa $90 \percent$ of the maximum, and for $1/A_R = 11$ the force is about $4$ times greater and circa $80 \percent$ of the maximum. The time the coils are charged with respect to its own time-constant are $5/24 \tau$ and $5/11 \tau$ respectively.
-
-\section{Impulse to Energy Ratio over Time}
-
-The formulas for impulse and energy when force and power change over time are:
-
-\begin{subequations}
-\begin{align}
-J &= \int F(t) \mathrm{d}t \\
-E &= \int P(t) \mathrm{d}t
-\end{align}
-\end{subequations}
-
-The impulse function over time:
-
-\begin{subequations}
-\begin{align}
-J(t) &= \int^t_0 F(x) \mathrm{d}x \\
-&= A_F \, N^2 \int^t_0 i^2(x) \mathrm{d}x \\
-&= \frac{A_F \, N^2 \, V^2}{R^3} \frac{2 R t - L (e^{-2 \frac{R t}{L}} - 4 e^{-\frac{R t}{L}} + 3)}{2}
-\end{align}
-\end{subequations}
-
-If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and $t = \tau x$:
-
-\begin{subequations}
-\begin{align}
-J(x) &= \frac{A_F A_L V^2}{A_R N^3} \frac{4 e^{-x}-e^{-2x}+2x-3}{2} \\
-&= \frac{A_F A_L V^2}{A_R^3 N^2} J_k(x) \\
-&= \frac{A_F A_L V^2}{A_R A_R R} J_k(x) \\
-&= \frac{A_F}{A_R} \tau P_{max} J_k(x)
-\end{align}
-\end{subequations}
-
-where:
-
-\begin{equation}
-J_k(x) = \frac{4 e^{-x}-e^{-2x}+2x-3}{2}
-\end{equation}
-
-\begin{sagesilent}
-jk = (4*exp(-x)-exp(-2*x)+2*x-3)/2
-jk_plot = plot(jk, x, 0, 6)
-jk_plot.axes_labels(['x', 'Jk(x)'])
-\end{sagesilent}
-
-The energy function over time:
-
-\begin{subequations}
-\begin{align}
-E(t) &= \int^t_0 P(x) \mathrm{d}x \\
-&= V \int^t_0 i(x) \mathrm{d}x \\
-&= \frac{V^2}{R^2} (R t + L(e^{-\frac{R t}{L}} - 1))
-\end{align}
-\end{subequations}
-
-If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and  $t = \tau x$:
-
-\begin{subequations}
-\begin{align}
-E(x) &= \frac{A_L V^2}{A_R^2 N^2} (e^{-x}+x-1) \\
-&= \frac{A_L V^2}{A_R^2 N^2} E_k(x) \\
-&= \frac{A_L V^2}{A_R R} E_k(x) \\
-&= \tau P_{max} E_k(x)
-\end{align}
-\end{subequations}
-
-where:
-
-\begin{equation}
-E_k(x) = e^{-x}+x-1
-\end{equation}
-
-\begin{sagesilent}
-ek = exp(-x)*((x-1)*exp(x) + 1)
-ek_plot = plot(ek, x, 0, 6)
-ek_plot.axes_labels(['x', 'Ek(x)'])
-comb_plot = jk_plot + ek_plot
-comb_plot.axes_labels(['x', 'Jk(x)<Ek(x)'])
-\end{sagesilent}
-
-We plot $J_k(x)$ and $E_k(x)$:
-
-\sageplot[width=.75\textwidth]{comb_plot}
-
-The asymptotes are $J_a(x) = x-3/2$ and $E_a(x) = x - 1$.\\
-\\
-The impulse to energy ratio function over time:
-
-\begin{subequations}
-\begin{align}
-J2E(x) &= \frac{J(x)}{E(x)} \\
-&= \frac{\frac{A_F}{A_R} \tau P_{max} J_k(x)}{\tau P_{max} E_k(x)} \\
-&= \frac{A_F}{A_R} \frac{J_k(x)}{E_k(x)} \\
-&= \frac{A_F}{A_R} J2E_k(x)
-\end{align}
-\end{subequations}
-
-where:
-
-\begin{subequations}
-\begin{align}
-J2E_k(x) &= \frac{J_k(x)}{E_k(x)} \\
-&= \frac{4-e^{-x}+(2x-3)e^x}{2(1+(x-1)e^x)}
-\end{align}
-\end{subequations}
-
-\begin{sagesilent}
-j2ek = (4-exp(-x)+(2*x-3)*exp(x))/(2*(1+(x-1)*exp(x)))
-j2ek_plot = plot(j2ek, x, 0, 6) + plot(1-exp(-x), x, 0, 6)
-j2ek_plot.axes_labels(['x', 'J2Ek(x)<1-e(-x)'])
-\end{sagesilent}
-
-\sageplot[width=.75\textwidth]{j2ek_plot}
-
-$1-e^{-x}$ is always above $J2E_k(x)$.
-In fact, it is not until $x \approx 75$ that $J2E_k(x)$ reach the same level as $1-e^{-x}$ was at $x = 5$, in other words $J2E_k(75) \approx 1-e^{-5}$.
-
-To benefit from the use of larger coils it is important to energize the coil long enough for the effect to appear.
-If a very large coil is used in a motor the RPM must be very low.
-Once again, look at: \url{https://youtu.be/r52VWrIZui8?t=11m26s}
-
-\section{Impulse to Energy Ratio over $A_R$}
-
-We will now compare impulse to energy ratio between two coils with the same $A_L$ at a fixed time in seconds as a function of $A_R$. Let the impulse to energy ratio now be the function:
-
-\begin{equation}
-J2E(A_R,t) = \frac{A_F}{A_R} (1 - e^{- \frac{A_R t}{A_L}})
-\end{equation}
-
-Our reference coil will have $A_R = 1$ and we set $t = 5 \tau = 5 A_L/A_R$ for this coil so our comparison function is:
-
-\begin{subequations}
-\begin{align}
-J2E_{cmp}(x) &= \frac{J2E(x,5 A_L/1)}{J2E(1,5 A_L/1)} \\
-&= \frac{(4e^5+1)((10x-3)e^{10x}+4e^{5x}-1)e^{5-5x}}{(7e^{10}+4e^5-1)((5x-1)e^{5x}+1)x}
-\end{align}
-\end{subequations}
-
-Let us plot $J2E_{cmp}(A_R)$:
-
-\begin{sagesilent}
-j2ec = ((4*exp(5)+1) * ((10*x-3)*exp(10*x)+4*exp(5*x)-1)*exp(5-5*x)) / ((7*exp(10)+4*exp(5)-1) * ((5*x-1)*exp(5*x)+1)*x)
-j2ec_plot = plot(j2ec, x, 0, 10)
-j2ec_plot.axes_labels(['AR', 'J2Ecmp(AR)'])
-\end{sagesilent}
-
-\sageplot[width=.75\textwidth]{j2ec_plot}
-
-It turns out that when time is fixed there is a maximum increase in force:
-
-\begin{equation}
-\lim_{x \to +0} J2E_{cmp}(x) = \frac{20 e^5(4e^5+1)}{3(7e^{10}+4e^5-1)} \approx 3.80
-\end{equation}
-
-Let us plot $J2E_{cmp}(1/A_R)$ to reflect the increase in copper instead of increase in resistance-factor:
-
-\begin{sagesilent}
-j2eci = ((4*exp(5)+1) * ((10*(1/x)-3)*exp(10*(1/x))+4*exp(5*(1/x))-1)*exp(5-5*(1/x))) / ((7*exp(10)+4*exp(5)-1) * ((5*(1/x)-1)*exp(5*(1/x))+1)*(1/x))
-j2eci_plot = plot(j2eci, x, 0, 40)
-j2eci_plot.axes_labels(['1/AR', 'J2Ecmp(1/AR)'])
-\end{sagesilent}
-
-\sageplot[width=.75\textwidth]{j2eci_plot}
-
-For $1/A_R = 19$ the impulse is about $3.42$ times greater and circa $90 \percent$ of the maximum, and for $1/A_R = 9$ the impulse is about $3.05$ times greater and circa $80 \percent$ of the maximum. The time the coils are charged with respect to its own time-constant are $5/19 \tau$ and $5/9 \tau$ respectively.
+[TODO Validate the simulations with experiments]
 
 \section{Conclusion}
 
-Although more can be explored in this area the general rule to get the best performance out of an electromagnet is to have the electromagnet as big as possible, which leads us to believe that motors should have as few and big coils as possible\cite{jonew} to increase torque times speed per power.
+[TODO]
 
 \appendix
 
 \section{In Plain English}
 
-Whenever we spend something, be it time, money, energy or power, we want to get the most value back, so we calculate the performance per input ratio.
-In this paper we have proposed a way of doing the same with electromagnets.
-The amount of copper in an electromagnet is one important factor that affects the force per power ratio, not the number of turns or the wire thickness in the coil.
-The general rule is; the more copper the greater force per power.
+[TODO]
 
 \section{På Ren Svenska}
 
-När vi spenderar något, vare sig det är tid, pengar, energi eller kraft, vi vill få ut mesta möjliga tillbaka, så vi beräknar förhållandet mellan prestanda och input.
-I den här artikeln har vi föreslagit ett sätt att göra samma sak med elektromagneter.
-Mängden koppar i en elektromagnet är en viktig faktor som påverkar förhållandet mellan kraft och effekt, inte antalet varv eller trådtjocklek i spolen.
-Den generella regeln är; ju mer koppar desto större kraft per effekt.
-
-\section{$A_F$, $A_R$ and $A_L$}
-
-$A_F$ was introduced to bundle together the parameters related to the core:
-
-\begin{equation}
-A_F = \frac{\mu^2 A}{2 \, \mu_0 \, g^2}
-\end{equation}
-
-$A_R$ is what we call the DC resistance factor and depends on the form of the windings of the inductor.
-If $W$ is the wire then we have:
-
-\begin{subequations}
-\begin{align}
-R &= \rho \frac{W_{length}}{W_{area}} \\
-N &= \frac{d}{W_{diam}} \, \frac{l}{W_{diam}} \\
-W_{length} &= 2 \pi r \, N \\
-W_{area} &= \frac{\pi}{4} \frac{d \, l}{N} \\
-R &= \frac{\rho}{\varrho} \frac{2 \pi r \, N \, 4 N}{\pi \, d \, l} \\
-R &= 8 \frac{\rho}{\varrho} \frac{r}{d \, l} N^2 \\
-A_R &= 8 \frac{\rho}{\varrho} \frac{r}{d \, l} \\
-R &= A_R N^2
-\end{align}
-\end{subequations}
-
-where $\rho$ is the resistivity of the material in the wire, which for copper is $16.78 \si{\nano\ohm\metre}$, $\varrho$ is the tightness of the windings, $r$ is the mean radius, $d$ is the depth and $l$ is the length.
-A realistic value for $\varrho$ seems to be $8/11$ which gives us:
-
-\begin{equation}
-A_R = 11 \rho \frac{r}{d \, l}
-\end{equation}
-
-which is what we use.
-$A_R$ is similar in its definition to $A_L$, the inductance factor.
-The definition of $A_L$ is $L = A_L \, N^2$.
-$A_L$ is frequently specified by transformer-core manufacturers but can also be used for air-core coils. 
-For a transformer-core we have:
-
-\begin{equation}
-A_L = \frac{\mu A}{l}
-\end{equation}
-
-For a multilayer air-core coil we have\cite{wpind}:
-
-\begin{equation}
-A_L = \frac{1}{31750} \frac{r^2}{6r+9l+10d}
-\end{equation}
-
-where $r$, $l$, $d$ are in $m$ and $A_L$ is in $H$,
+[TODO]
 
 \input{last-comment.tex}
 
-We like to thank George Gray for proofreading v0.6 of this paper.
+[TODO]
 
 \printbibliography
 

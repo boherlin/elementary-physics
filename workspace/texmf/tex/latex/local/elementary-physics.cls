@@ -19,9 +19,9 @@
 \usepackage[backend=bibtex]{biblatex}
 \bibliography{elementary-physics.bib}
 \usepackage{tikz}
-\usepackage{sagetex}
+%\usepackage{sagetex}
 
-\setlength{\sagetexindent}{10ex}
+%\setlength{\sagetexindent}{10ex}
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
