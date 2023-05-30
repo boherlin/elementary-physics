@@ -3,7 +3,7 @@ SUBDIRS = \
 	2-increasing-momentum-or-charge \
 	3-mechanical-electrical-analogies \
 	4-increasing-magnetic-flux \
-	5-increasing-electromagnet-force
+	5-increasing-energy
 
 .PHONY : $(SUBDIRS) recurse
 
